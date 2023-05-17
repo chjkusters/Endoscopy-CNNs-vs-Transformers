@@ -17,12 +17,11 @@ import matplotlib.pyplot as plt
 import matplotlib.colors as clr
 from sklearn.metrics import roc_curve, roc_auc_score
 
-from dataset_public import read_inclusion_kvasir, augmentations_kvasir
-from dataset_public import read_inclusion_sysucc, augmentations_sysucc
-from dataset_public import read_inclusion_giana, augmentations_giana
+from data.dataset_public import read_inclusion_kvasir, augmentations_kvasir
+from data.dataset_public import read_inclusion_giana, augmentations_giana
 from train_public import check_cuda, find_best_model_kvasir, find_best_model_sysucc, find_best_model_giana
-from model_wle import Model
-from metrics_wle import BinaryDiceMetricEval
+from models.model_wle import Model
+from utils.metrics_wle import BinaryDiceMetricEval
 
 
 """"""""""""""""""""""""
@@ -201,158 +200,6 @@ def run_kvasir(opt):
     avg_dice = dice_score.compute()
     print('\nSegmentation Performance')
     print('avg_dice_seg: {:.4f}'.format(avg_dice.item()))
-
-
-def run_sysucc(opt):
-
-    # Test Device
-    device = check_cuda()
-
-    # Create model output database
-    df = pd.DataFrame(columns=['Case', 'CLS', 'CLS Correct'])
-    logi = 0
-
-    # Construct data
-    criteria = get_data_inclusion_criteria()
-    if DEFINE_SET == 'Val':
-        val_inclusion = read_inclusion_sysucc(path=CACHE_PATH, criteria=criteria['dev'])
-        print('Found {} images...'.format(len(val_inclusion)))
-    elif DEFINE_SET == 'Test':
-        val_inclusion = read_inclusion_sysucc(path=CACHE_PATH, criteria=criteria['test'])
-        print('Found {} images...'.format(len(val_inclusion)))
-    elif DEFINE_SET == 'Test-Corrupt':
-        val_inclusion = read_inclusion_sysucc(path=CACHE_PATH, criteria=criteria['test-corrupt'])
-        print('Found {} images...'.format(len(val_inclusion)))
-    else:
-        raise Exception('Unrecognized DEFINE_SET: {}'.format(DEFINE_SET))
-
-    # Construct transforms
-    data_transforms = augmentations_sysucc(opt=opt)
-
-    # Construct Model and load weights
-    model = Model(opt=opt, inference=True)
-    best_index = find_best_model_sysucc(path=os.path.join(SAVE_DIR, EXPERIMENT_NAME))
-    checkpoint = torch.load(os.path.join(SAVE_DIR, EXPERIMENT_NAME, best_index))['state_dict']
-
-    # Adapt state_dict keys (remove model. from the key and save again)
-    checkpoint_keys = list(checkpoint.keys())
-    for key in checkpoint_keys:
-        checkpoint[key.replace('model.', '')] = checkpoint[key]
-        del checkpoint[key]
-    model.load_state_dict(checkpoint, strict=True)
-
-    # Save final model as .pt file
-    torch.save(model.state_dict(), os.path.join(SAVE_DIR, EXPERIMENT_NAME, 'final_pytorch_model.pt'))
-    weights = torch.load(os.path.join(SAVE_DIR, EXPERIMENT_NAME, 'final_pytorch_model.pt'))
-    model.load_state_dict(weights, strict=True)
-
-    # Initialize metrics
-    tp_cls, tn_cls, fp_cls, fn_cls = 0., 0., 0., 0.
-    y_true, y_pred = list(), list()
-
-    # Push model to GPU and set in evaluation mode
-    model.cuda()
-    model.eval()
-    with torch.no_grad():
-
-        # Loop over the data
-        for img in val_inclusion:
-
-            # Extract information from cache
-            file = img['file']
-            img_name = os.path.splitext(os.path.split(file)[1])[0]
-            roi = img['roi']
-
-            # Construct target
-            label = img['label']
-            if label:
-                target = True
-                y_true.append(target)
-            else:
-                target = False
-                y_true.append(target)
-
-            # Construct Opening print line
-            print('\nOpening image: {}'.format(img_name))
-
-            # Open Image
-            image = Image.open(file).convert('RGB')
-
-            # Crop the image to the ROI
-            image = image.crop((roi[2], roi[0], roi[3], roi[1]))
-
-            # Apply transforms to image and mask
-            image_t = data_transforms['test'](image)
-            image_t = image_t.unsqueeze(0).cuda()
-
-            # Get prediction of model and perform Sigmoid activation
-            # cls_pred, seg_pred = model(image_t)
-            out1, out2 = model(image_t)
-            cls_pred = (out1 if out1.dim() == 2 else out2)
-            seg_pred = (out2 if out2.dim() == 4 else out1)
-            cls_pred = torch.sigmoid(cls_pred).cpu()
-
-            # Process classification prediction; positive prediction if exceed threshold = 0.5
-            print('Classification Score: {:.4f}'.format(cls_pred.item()))
-            cls = cls_pred > 0.5
-            cls = cls.squeeze(axis=0).item()
-
-            # Append values to list
-            y_pred.append(cls_pred.item())
-
-            # Update classification metrics
-            tp_cls += (target * cls)
-            tn_cls += ((1 - target) * (1 - cls))
-            fp_cls += ((1 - target) * cls)
-            fn_cls += (target * (1 - cls))
-
-            # Add values to the dataframe
-            cls_result = (cls == target)
-            df.loc[logi] = [img_name,
-                            round(cls_pred.item(), 5),
-                            cls_result]
-            logi += 1
-
-            # Make folders
-            if not os.path.exists(os.path.join(OUTPUT_PATH, 'figures')):
-                os.makedirs(os.path.join(OUTPUT_PATH, 'figures'))
-            if not os.path.exists(os.path.join(OUTPUT_PATH, 'output')):
-                os.makedirs(os.path.join(OUTPUT_PATH, 'output'))
-
-    # Compute accuracy, sensitivity and specificity for classification
-    accuracy_cls = (tp_cls + tn_cls) / (tp_cls + fn_cls + tn_cls + fp_cls)
-    sensitivity_cls = tp_cls / (tp_cls + fn_cls)
-    specificity_cls = tn_cls / (tn_cls + fp_cls + 1e-16)
-
-    # Print accuracy, sensitivity and specificity
-    print('\nClassification Performance')
-    print('accuracy_cls: {:.4f}'.format(accuracy_cls))
-    print('sensitivity_cls: {:.4f}'.format(sensitivity_cls))
-    print('specificity_cls: {:.4f}'.format(specificity_cls + 1e-16))
-
-    # Compute AUC for classification
-    auc = roc_auc_score(y_true, y_pred)
-    print('auc_cls: {:.4f}'.format(auc))
-    fpr, tpr, _ = roc_curve(y_true, y_pred)
-
-    # Plot ROC curve for classification results and save to specified folder
-    plt.plot(fpr, tpr, marker='.', label='Classification head')
-    plt.xlabel('False Positive Rate')
-    plt.ylabel('True Positive Rate')
-    major_ticks = np.arange(0., 1.01, 0.05)
-    plt.xticks(major_ticks, fontsize='x-small')
-    plt.yticks(major_ticks)
-    plt.xlim((-0.01, 1.01))
-    plt.ylim((-0.01, 1.01))
-    plt.grid(True)
-    plt.grid(alpha=0.5)
-    plt.legend()
-    plt.title('ROC AUC')
-    plt.savefig(os.path.join(OUTPUT_PATH, 'figures', 'auc_curve.jpg'))
-    plt.close()
-
-    # Save dataframe as csv file
-    df.to_excel(os.path.join(OUTPUT_PATH, 'output', 'cls_scores.xlsx'))
 
 
 def run_giana(opt):
@@ -577,40 +424,40 @@ def run_giana(opt):
 if __name__ == '__main__':
 
     """"ADJUSTABLE PARAMETERS"""
-    EXPERIMENT_NAME = 'Real-Exp19-CNN-EfficientNetB6-UNet++-Giana'
-    # DEFINE_SET = 'Test'
-    DEFINE_SET = 'Test-Corrupt'
+    EXPERIMENT_NAME = 'Experiment1'
+    DEFINE_SET = 'Val'
 
     """SPECIFY PATH FOR SAVING"""
     SAVE_DIR = 'D:/Python Scripts - Open Research/WLE-Transformers-PL/experiments'
+    SAVE_DIR = os.path.join(os.getcwd(), 'experiments')
 
     """SPECIFY PATH FOR CACHE"""
     if 'kvasir' in EXPERIMENT_NAME.lower() and DEFINE_SET == 'Val':
-        CACHE_PATH = 'D:/Python Scripts - Open Research/WLE-Transformers-PL/cache_kvasir_seg'
+        CACHE_PATH = os.path.join(os.getcwd(), 'cache', '')
         OUTPUT_PATH = os.path.join(SAVE_DIR, EXPERIMENT_NAME, 'Image Inference', 'Validation Set')
     elif 'kvasir' in EXPERIMENT_NAME.lower() and DEFINE_SET == 'Test':
-        CACHE_PATH = 'D:/Python Scripts - Open Research/WLE-Transformers-PL/cache_kvasir_seg'
+        CACHE_PATH = os.path.join(os.getcwd(), 'cache', '')
         OUTPUT_PATH = os.path.join(SAVE_DIR, EXPERIMENT_NAME, 'Image Inference', 'Test Set')
     elif 'kvasir' in EXPERIMENT_NAME.lower() and DEFINE_SET == 'Test-Corrupt':
-        CACHE_PATH = 'D:/Python Scripts - Open Research/WLE-Transformers-PL/cache_kvasir_seg_test_corrupt'
+        CACHE_PATH = os.path.join(os.getcwd(), 'cache', '')
         OUTPUT_PATH = os.path.join(SAVE_DIR, EXPERIMENT_NAME, 'Image Inference', 'Corrupt Test Set')
     elif 'sysucc' in EXPERIMENT_NAME.lower() and DEFINE_SET == 'Val':
-        CACHE_PATH = 'D:/Python Scripts - Open Research/WLE-Transformers-PL/cache_sysucc'
+        CACHE_PATH = os.path.join(os.getcwd(), 'cache', '')
         OUTPUT_PATH = os.path.join(SAVE_DIR, EXPERIMENT_NAME, 'Image Inference', 'Validation Set')
     elif 'sysucc' in EXPERIMENT_NAME.lower() and DEFINE_SET == 'Test':
-        CACHE_PATH = 'D:/Python Scripts - Open Research/WLE-Transformers-PL/cache_sysucc'
+        CACHE_PATH = os.path.join(os.getcwd(), 'cache', '')
         OUTPUT_PATH = os.path.join(SAVE_DIR, EXPERIMENT_NAME, 'Image Inference', 'Test Set')
     elif 'sysucc' in EXPERIMENT_NAME.lower() and DEFINE_SET == 'Test-Corrupt':
-        CACHE_PATH = 'D:/Python Scripts - Open Research/WLE-Transformers-PL/cache_sysucc'
+        CACHE_PATH = os.path.join(os.getcwd(), 'cache', '')
         OUTPUT_PATH = os.path.join(SAVE_DIR, EXPERIMENT_NAME, 'Image Inference', 'Corrupt Test Set')
     elif 'giana' in EXPERIMENT_NAME.lower() and DEFINE_SET == 'Val':
-        CACHE_PATH = 'D:/Python Scripts - Open Research/WLE-Transformers-PL/cache_giana'
+        CACHE_PATH = os.path.join(os.getcwd(), 'cache', '')
         OUTPUT_PATH = os.path.join(SAVE_DIR, EXPERIMENT_NAME, 'Image Inference', 'Validation Set')
     elif 'giana' in EXPERIMENT_NAME.lower() and DEFINE_SET == 'Test':
-        CACHE_PATH = 'D:/Python Scripts - Open Research/WLE-Transformers-PL/cache_giana'
+        CACHE_PATH = os.path.join(os.getcwd(), 'cache', '')
         OUTPUT_PATH = os.path.join(SAVE_DIR, EXPERIMENT_NAME, 'Image Inference', 'Test Set')
     elif 'giana' in EXPERIMENT_NAME.lower() and DEFINE_SET == 'Test-Corrupt':
-        CACHE_PATH = 'D:/Python Scripts - Open Research/WLE-Transformers-PL/cache_giana_test_corrupt'
+        CACHE_PATH = os.path.join(os.getcwd(), 'cache', '')
         OUTPUT_PATH = os.path.join(SAVE_DIR, EXPERIMENT_NAME, 'Image Inference', 'Corrupt Test Set')
     else:
         raise ValueError
@@ -621,8 +468,6 @@ if __name__ == '__main__':
     """EXECUTE FUNCTIONS"""
     if 'kvasir' in EXPERIMENT_NAME.lower():
         run_kvasir(opt=opt)
-    elif 'sysucc' in EXPERIMENT_NAME.lower():
-        run_sysucc(opt=opt)
     elif 'giana' in EXPERIMENT_NAME.lower():
         run_giana(opt=opt)
     else:
