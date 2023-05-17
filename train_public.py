@@ -12,12 +12,12 @@ import pytorch_lightning as pl
 from pytorch_lightning.loggers import WandbLogger
 from pytorch_lightning.callbacks import ModelCheckpoint, LearningRateMonitor
 
-from dataset_public import DATASET_TRAIN_TEST_KVASIR, DATASET_VAL_KVASIR, read_inclusion_kvasir, augmentations_kvasir
-from dataset_public import DATASET_TRAIN_TEST_GIANA, DATASET_VAL_GIANA, read_inclusion_giana, augmentations_giana
-from dataset_public import DATASET_TRAIN_TEST_SYSUCC, DATASET_VAL_SYSUCC, read_inclusion_sysucc, augmentations_sysucc, sample_weights_sysucc
-from loss_optim_wle import construct_optimizer, construct_scheduler, construct_loss_function
-from metrics_wle import BinaryDiceMetric
-from model_wle import Model
+from data.dataset_public import DATASET_TRAIN_TEST_KVASIR, DATASET_VAL_KVASIR, read_inclusion_kvasir, augmentations_kvasir
+from data.dataset_public import DATASET_TRAIN_TEST_GIANA, DATASET_VAL_GIANA, read_inclusion_giana, augmentations_giana
+from data.dataset_public import DATASET_TRAIN_TEST_SYSUCC, DATASET_VAL_SYSUCC, read_inclusion_sysucc, augmentations_sysucc, sample_weights_sysucc
+from utils.loss_optim_wle import construct_optimizer, construct_scheduler, construct_loss_function
+from utils.metrics_wle import BinaryDiceMetric
+from models.model_wle import Model
 
 """"""""""""""""""""""""
 """" HELPER FUNCTIONS """

@@ -12,10 +12,10 @@ import pytorch_lightning as pl
 from pytorch_lightning.loggers import WandbLogger
 from pytorch_lightning.callbacks import ModelCheckpoint, LearningRateMonitor
 
-from dataset_wle import DATASET_TRAIN_TEST, DATASET_VAL, read_inclusion, read_inclusion_split, augmentations, sample_weights
-from loss_optim_wle import construct_optimizer, construct_scheduler, construct_loss_function
-from metrics_wle import BinaryDiceMetric
-from model_wle import Model
+from data.dataset_wle import DATASET_TRAIN_TEST, DATASET_VAL, read_inclusion, read_inclusion_split, augmentations, sample_weights
+from utils.loss_optim_wle import construct_optimizer, construct_scheduler, construct_loss_function
+from utils.metrics_wle import BinaryDiceMetric
+from models.model_wle import Model
 
 
 """"""""""""""""""""""""
