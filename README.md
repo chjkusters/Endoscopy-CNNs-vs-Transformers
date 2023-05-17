@@ -28,6 +28,7 @@ The folder structure of this repository is as follows:
 │   └── metrics_wle.py
 ├── pretrained
 │   └── ...
+├── conda.yaml
 ├── inference_public.py
 ├── inference_wle.py
 ├── train_public.py
