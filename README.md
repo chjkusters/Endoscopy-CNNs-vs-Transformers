@@ -36,11 +36,10 @@ The folder structure of this repository is as follows:
 ```
 
 ## Pretrained models
-The ImageNet pretrained weights are downloaded from: 
+The ImageNet pretrained weights are downloaded from the following links, and put under the "pretrained" folder: 
 - MiT: https://github.com/dumyCq/ESFPNet
 - PvTv2: https://github.com/whai362/PVT/tree/v2/classification
 - SwinV2: https://github.com/microsoft/Swin-Transformer
-Put the pretrained weights under the "pretrained" folder
 
 ## Citation
 Please use the following citation
