@@ -1,20 +1,15 @@
 """IMPORT PACKAGES"""
 import os
 import argparse
-import time
 import json
-import copy
 import random
 import pandas as pd
 import cv2
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 import torch
-from torch import nn
-import torchvision.transforms as transforms
 
 import matplotlib.pyplot as plt
-import matplotlib.colors as clr
 from sklearn.metrics import roc_curve, roc_auc_score
 
 from data.dataset_wle import read_inclusion, augmentations

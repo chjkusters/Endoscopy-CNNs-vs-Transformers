@@ -1,25 +1,21 @@
 """IMPORT PACKAGES"""
 import os
 import argparse
-import time
 import json
-import copy
 import random
 import pandas as pd
 import cv2
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image
 import numpy as np
 import torch
 import torchmetrics
-import torchvision.transforms as transforms
 
 import matplotlib.pyplot as plt
-import matplotlib.colors as clr
 from sklearn.metrics import roc_curve, roc_auc_score
 
 from data.dataset_public import read_inclusion_kvasir, augmentations_kvasir
 from data.dataset_public import read_inclusion_giana, augmentations_giana
-from train_public import check_cuda, find_best_model_kvasir, find_best_model_sysucc, find_best_model_giana
+from train_public import check_cuda, find_best_model_kvasir, find_best_model_giana
 from models.model_wle import Model
 from utils.metrics_wle import BinaryDiceMetricEval
 
