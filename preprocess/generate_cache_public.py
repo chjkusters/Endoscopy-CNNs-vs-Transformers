@@ -8,7 +8,6 @@ from skimage.measure import label
 from scipy import ndimage
 from PIL import Image
 from numba import jit
-from collections import Counter
 import shutil
 
 """SPECIFY EXTENSIONS AND DATA ROOTS"""

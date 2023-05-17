@@ -7,7 +7,6 @@ from skimage.measure import label
 from scipy import ndimage
 from PIL import Image
 from numba import jit
-from collections import Counter
 import shutil
 
 """SPECIFY EXTENSIONS AND DATA ROOTS"""
@@ -323,7 +322,7 @@ def cache_wle(root_dir, mask_dir, subtlety_dir, quality_dir, storing_folder):
         print('Data: ', data)
 
         # Check whether there is already a json file for this particular image; otherwise create file
-        if not os.path.exists(os.path.join(os.getcwd(), storing_folder, os.path.splitext(imgname)[0] + '.json')):
+        if not os.path.exists(os.path.join(os.getcwd(), '..', storing_folder, os.path.splitext(imgname)[0] + '.json')):
             jsonfile = os.path.join(os.getcwd(), storing_folder, os.path.splitext(imgname)[0] + '.json')
         elif not os.path.exists(os.path.join(os.getcwd(), storing_folder, os.path.splitext(imgname)[0] + '_2.json')):
             jsonfile = os.path.join(os.getcwd(), storing_folder, os.path.splitext(imgname)[0] + '_2.json')
@@ -1271,14 +1270,6 @@ if __name__ == '__main__':
     #                quality_dir=wle_quality_dir, storing_folder=wle_rejected_criteria_store_soft)
     # cache_excluded(root_dir=wle_rejected_criteria_dir, mask_dir=wle_mask_dir, subtlety_dir=wle_subtle_dir,
     #                quality_dir=wle_quality_dir, storing_folder=wle_rejected_criteria_store)
-
-    # Extreme Low Quality Set
-    # cache_allframes(root_dir=wle_rejected_allframes_dir, mask_dir=wle_mask_dir_plausible, subtlety_dir=wle_subtle_dir,
-    #                 quality_dir=wle_quality_dir, storing_folder=wle_rejected_allframes_store_plausible)
-    # cache_allframes(root_dir=wle_rejected_allframes_dir, mask_dir=wle_mask_dir_soft, subtlety_dir=wle_subtle_dir,
-    #                 quality_dir=wle_quality_dir, storing_folder=wle_rejected_allframes_store_soft)
-    # cache_allframes(root_dir=wle_rejected_allframes_dir, mask_dir=wle_mask_dir, subtlety_dir=wle_subtle_dir,
-    #                 quality_dir=wle_quality_dir, storing_folder=wle_rejected_allframes_store)
 
     # BORN Module
     # cache_born(root_dir=wle_born_dir, mask_dir=wle_born_mask_medium, storing_folder=wle_born_store_medium)
