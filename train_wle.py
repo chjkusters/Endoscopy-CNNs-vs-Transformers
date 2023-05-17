@@ -32,7 +32,7 @@ def get_params():
     parser.add_argument('--seed', type=int, default=7)
 
     # DEFINE MODEL
-    parser.add_argument('--backbone', type=str, default='EfficientNetB6-UNet++')
+    parser.add_argument('--backbone', type=str, default='ESFPNet-B0')
     parser.add_argument('--seg_branch', type=str, default=None)
 
     # DEFINE OPTIMIZER, CRITERION, SCHEDULER
@@ -45,7 +45,7 @@ def get_params():
 
     # AUGMENTATION PARAMS
     parser.add_argument('--imagesize', type=int, default=256)   # Should be 256, but for ViT 224
-    parser.add_argument('--batchsize', type=int, default=8)
+    parser.add_argument('--batchsize', type=int, default=32)
     parser.add_argument('--num_classes', type=int, default=1)
 
     # TRAINING PARAMETERS

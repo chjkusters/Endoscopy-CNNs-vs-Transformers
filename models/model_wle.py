@@ -2,14 +2,14 @@
 import torch.nn as nn
 
 # Import helper functions from other files
-from ResNet import ResNet50, ResNet101, ResNet152, DeepLabv3_plus
-from ConvNeXt import convnext_tiny, convnext_small, convnext_base, convnext_large
-from ConvNeXt import DeepLabv3_plus_ConvNeXt_TS, DeepLabv3_plus_ConvNeXt_B, DeepLabv3_plus_ConvNeXt_L
-from UNet import UNet, UNetPP
-from CaraNet import CaraNet
-from FCBFormer import FCBFormer
-from ESFPNet import ESFPNetStructure
-from SwinUperNet import SwinUperNet
+from models.ResNet import ResNet50, ResNet101, ResNet152, DeepLabv3_plus
+from models.ConvNeXt import convnext_tiny, convnext_small, convnext_base, convnext_large
+from models.ConvNeXt import DeepLabv3_plus_ConvNeXt_TS, DeepLabv3_plus_ConvNeXt_B, DeepLabv3_plus_ConvNeXt_L
+from models.UNet import UNet, UNetPP
+from models.CaraNet import CaraNet
+from models.FCBFormer import FCBFormer
+from models.ESFPNet import ESFPNetStructure
+from models.SwinUperNet import SwinUperNet
 
 
 """"""""""""""""""""""""""""""""""""

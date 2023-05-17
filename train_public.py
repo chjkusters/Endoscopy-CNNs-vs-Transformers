@@ -14,7 +14,6 @@ from pytorch_lightning.callbacks import ModelCheckpoint, LearningRateMonitor
 
 from data.dataset_public import DATASET_TRAIN_TEST_KVASIR, DATASET_VAL_KVASIR, read_inclusion_kvasir, augmentations_kvasir
 from data.dataset_public import DATASET_TRAIN_TEST_GIANA, DATASET_VAL_GIANA, read_inclusion_giana, augmentations_giana
-from data.dataset_public import DATASET_TRAIN_TEST_SYSUCC, DATASET_VAL_SYSUCC, read_inclusion_sysucc, augmentations_sysucc, sample_weights_sysucc
 from utils.loss_optim_wle import construct_optimizer, construct_scheduler, construct_loss_function
 from utils.metrics_wle import BinaryDiceMetric
 from models.model_wle import Model
@@ -904,31 +903,6 @@ if __name__ == '__main__':
 
     """EXECUTE FUNCTION"""
     run_kvasir(opt)
-
-    """"""""""""
-    """SYSUCC"""
-    """"""""""""
-
-    # Specify cache path
-    CACHE_PATH = os.path.join(os.getcwd(), 'cache')
-
-    # Specify parameters and inclusion criteria
-    opt = get_params_sysucc()
-
-    # Check if direction for logging the information already exists; otherwise make direction
-    if not os.path.exists(os.path.join(SAVE_DIR, opt.experimentname)):
-        os.mkdir(os.path.join(SAVE_DIR, opt.experimentname))
-
-    # Save params from opt as a dictionary in a json file 'params.json'
-    with open(os.path.join(SAVE_DIR,  opt.experimentname, 'params.json'), 'w') as fp:
-        json.dump(opt.__dict__, fp, indent=4)
-
-    # Save inclusion criteria (already dictionary) in a json file 'datacriteria.json'
-    with open(os.path.join(SAVE_DIR, opt.experimentname, 'datacriteria.json'), 'w') as fp:
-        json.dump(get_data_inclusion_criteria(), fp, indent=4)
-
-    """EXECUTE FUNCTION"""
-    run_sysucc(opt)
 
     """"""""""""
     """GIANA"""
