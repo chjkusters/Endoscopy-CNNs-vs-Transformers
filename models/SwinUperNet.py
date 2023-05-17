@@ -35,7 +35,7 @@ class SwinUperNet(nn.Module):
                                             depths=[2, 2, 6, 2],
                                             num_heads=[3, 6, 12, 24],
                                             num_classes=opt.num_classes)
-            pretrained_path = os.path.join(os.getcwd(), 'pretrained', 'swinv2_tiny_patch4_window8_256.pth')
+            pretrained_path = os.path.join(os.getcwd(), '..', 'pretrained', 'swinv2_tiny_patch4_window8_256.pth')
             self._load_pretrained(pretrained_path=pretrained_path)
             feature_channels = [192, 384, 768, 768]
 
@@ -46,7 +46,7 @@ class SwinUperNet(nn.Module):
                                             depths=[2, 2, 18, 2],
                                             num_heads=[3, 6, 12, 24],
                                             num_classes=opt.num_classes)
-            pretrained_path = os.path.join(os.getcwd(), 'pretrained', 'swinv2_small_patch4_window8_256.pth')
+            pretrained_path = os.path.join(os.getcwd(), '..', 'pretrained', 'swinv2_small_patch4_window8_256.pth')
             self._load_pretrained(pretrained_path=pretrained_path)
             feature_channels = [192, 384, 768, 768]
 
@@ -57,7 +57,7 @@ class SwinUperNet(nn.Module):
                                       depths=[2, 2, 18, 2],
                                       num_heads=[4, 8, 16, 32],
                                       num_classes=opt.num_classes)
-            pretrained_path = os.path.join(os.getcwd(), 'pretrained', 'swinv2_base_patch4_window8_256.pth')
+            pretrained_path = os.path.join(os.getcwd(), '..', 'pretrained', 'swinv2_base_patch4_window8_256.pth')
             self._load_pretrained(pretrained_path=pretrained_path)
             feature_channels = [256, 512, 1024, 1024]
 

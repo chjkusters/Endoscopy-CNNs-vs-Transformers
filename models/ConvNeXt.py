@@ -130,11 +130,6 @@ class ConvNeXt(nn.Module):
 
         self.norm = nn.LayerNorm(dims[-1], eps=1e-6)  # final norm layer
         self.head = nn.Linear(dims[-1], num_classes)
-
-    #     self.apply(self._init_weights)
-    #     self.head.weight.data.mul_(head_init_scale)
-    #     self.head.bias.data.mul_(head_init_scale)
-
         self._init_weight()
 
     def _init_weight(self):
@@ -147,11 +142,6 @@ class ConvNeXt(nn.Module):
             elif isinstance(m, nn.Linear):
                 torch.nn.init.kaiming_normal_(m.weight)
                 m.bias.data.zero_()
-
-    # def _init_weights(self, m):
-    #     if isinstance(m, (nn.Conv2d, nn.Linear)):
-    #         trunc_normal_(m.weight, std=.02)
-    #         nn.init.constant_(m.bias, 0)
 
     def forward_features(self, x):
         for i in range(4):
@@ -262,8 +252,6 @@ class ASPP_module_TS(nn.Module):
     def _init_weight(self):
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
-                # n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
-                # m.weight.data.normal_(0, math.sqrt(2. / n))
                 torch.nn.init.kaiming_normal_(m.weight)
             elif isinstance(m, nn.BatchNorm2d):
                 m.weight.data.fill_(1)
@@ -358,8 +346,6 @@ class DeepLabv3_plus_ConvNeXt_TS(nn.Module):
     def _init_weight(self):
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
-                # n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
-                # m.weight.data.normal_(0, math.sqrt(2. / n))
                 torch.nn.init.kaiming_normal_(m.weight)
             elif isinstance(m, nn.BatchNorm2d):
                 m.weight.data.fill_(1)

@@ -303,11 +303,6 @@ def sample_weights(img_list):
             elif subtlety == 2:
                 n_subtle_2 += 1.
 
-    # print('Benign: {}, Malign: {}'.format(n_benign, n_malign))
-    # print('Number of neoplastic masks: {}'.format(n_masks))
-    # print('Subtlety Neo 0: {}, 1: {}, 2: {}, Total: {}'.format(n_subtle_0, n_subtle_1, n_subtle_2,
-    #                                                            n_subtle_0 + n_subtle_1 + n_subtle_2))
-
     # Loop over the indices
     for ind in indices:
 
@@ -342,7 +337,6 @@ def sample_weights(img_list):
 
     # Convert weights to numpy array in float64 format
     weights = np.array(weights, dtype=np.float64)
-    # print('Length:  {}, Sum: {}'.format(len(weights), np.sum(weights)))
 
     return weights
 

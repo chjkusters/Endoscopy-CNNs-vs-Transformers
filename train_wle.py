@@ -551,7 +551,7 @@ def run(opt):
     print('Starting PyTorch Lightning Model...')
 
     # Construct Loggers for PyTorch Lightning
-    wandb_logger_train = WandbLogger(name='Train-{}'.format(EXPERIMENT_NAME), project='WLE Algorithm - Transformers',
+    wandb_logger_train = WandbLogger(name='Train-{}'.format(EXPERIMENT_NAME), project='Endoscopy-CNNs-vs-Transformers',
                                      save_dir=os.path.join(SAVE_DIR, EXPERIMENT_NAME))
     lr_monitor_train = LearningRateMonitor(logging_interval='step')
 
@@ -595,7 +595,7 @@ def run(opt):
 
     # Define new wandb logger
     wandb_logger_train.experiment.finish()
-    wandb_logger_finetune = WandbLogger(name='Finetune-{}'.format(EXPERIMENT_NAME), project='WLE Algorithm - Transformers',
+    wandb_logger_finetune = WandbLogger(name='Finetune-{}'.format(EXPERIMENT_NAME), project='Endoscopy-CNNs-vs-Transformers',
                                         save_dir=os.path.join(SAVE_DIR, EXPERIMENT_NAME))
     lr_monitor_finetune = LearningRateMonitor(logging_interval='step')
 
@@ -638,14 +638,13 @@ def run(opt):
 if __name__ == '__main__':
 
     """DEFINE EXPERIMENT NAME"""
-    EXPERIMENT_NAME = 'Test-UNet++-EfficientNetB6'
+    EXPERIMENT_NAME = 'Experiment1'
 
     """SPECIFY CACHE PATH"""
-    # CACHE_PATH = 'D:/Python Scripts - Open Research/WLE-Transformers-PL/cache_wle_plausible'
-    CACHE_PATH = 'D:/Python Scripts - Open Research/WLE-Transformers-PL/cache_wle_plausible_nodup'
+    CACHE_PATH = os.path.join(os.getcwd(), 'cache')
 
     """SPECIFY PATH FOR SAVING"""
-    SAVE_DIR = 'D:/Python Scripts - Open Research/WLE-Transformers-PL/experiments'
+    SAVE_DIR = os.path.join(os.getcwd(), 'experiments')
 
     """SPECIFY PARAMETERS AND INCLUSION CRITERIA"""
     opt = get_params()

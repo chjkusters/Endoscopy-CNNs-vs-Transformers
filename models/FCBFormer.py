@@ -67,7 +67,7 @@ class TB(nn.Module):
                 norm_layer=partial(nn.LayerNorm, eps=1e-6),
                 depths=[2, 2, 2, 2],
                 sr_ratios=[8, 4, 2, 1])
-            checkpoint = torch.load(os.path.join(os.getcwd(), 'pretrained', 'pvt_v2_b0.pth'))
+            checkpoint = torch.load(os.path.join(os.getcwd(), '..', 'pretrained', 'pvt_v2_b0.pth'))
             option = 'PVT-V2-B0'
             backbone.default_cfg = _cfg()
             backbone.load_state_dict(checkpoint)
@@ -83,7 +83,7 @@ class TB(nn.Module):
                 norm_layer=partial(nn.LayerNorm, eps=1e-6),
                 depths=[2, 2, 2, 2],
                 sr_ratios=[8, 4, 2, 1])
-            checkpoint = torch.load(os.path.join(os.getcwd(), 'pretrained', 'pvt_v2_b1.pth'))
+            checkpoint = torch.load(os.path.join(os.getcwd(), '..', 'pretrained', 'pvt_v2_b1.pth'))
             option = 'PVT-V2-B1'
             backbone.default_cfg = _cfg()
             backbone.load_state_dict(checkpoint)
@@ -100,7 +100,7 @@ class TB(nn.Module):
                 depths=[3, 4, 6, 3],
                 sr_ratios=[8, 4, 2, 1],
                 linear=True)
-            checkpoint = torch.load(os.path.join(os.getcwd(), 'pretrained', 'pvt_v2_b2_li.pth'))
+            checkpoint = torch.load(os.path.join(os.getcwd(), '..', 'pretrained', 'pvt_v2_b2_li.pth'))
             option = 'PVT-V2-B2-Linear'
             backbone.default_cfg = _cfg()
             backbone.load_state_dict(checkpoint)
@@ -116,7 +116,7 @@ class TB(nn.Module):
                 norm_layer=partial(nn.LayerNorm, eps=1e-6),
                 depths=[3, 4, 6, 3],
                 sr_ratios=[8, 4, 2, 1])
-            checkpoint = torch.load(os.path.join(os.getcwd(), 'pretrained', 'pvt_v2_b2.pth'))
+            checkpoint = torch.load(os.path.join(os.getcwd(), '..', 'pretrained', 'pvt_v2_b2.pth'))
             option = 'PVT-V2-B2'
             backbone.default_cfg = _cfg()
             backbone.load_state_dict(checkpoint)
@@ -132,7 +132,7 @@ class TB(nn.Module):
                 norm_layer=partial(torch.nn.LayerNorm, eps=1e-6),
                 depths=[3, 4, 18, 3],
                 sr_ratios=[8, 4, 2, 1],)
-            checkpoint = torch.load(os.path.join(os.getcwd(), 'pretrained', 'pvt_v2_b3.pth'))
+            checkpoint = torch.load(os.path.join(os.getcwd(), '..', 'pretrained', 'pvt_v2_b3.pth'))
             option = 'PVT-V2-B3'
             backbone.default_cfg = _cfg()
             backbone.load_state_dict(checkpoint)

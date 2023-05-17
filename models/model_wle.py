@@ -7,10 +7,8 @@ from ConvNeXt import convnext_tiny, convnext_small, convnext_base, convnext_larg
 from ConvNeXt import DeepLabv3_plus_ConvNeXt_TS, DeepLabv3_plus_ConvNeXt_B, DeepLabv3_plus_ConvNeXt_L
 from UNet import UNet, UNetPP
 from CaraNet import CaraNet
-from GMSRFNet import GMSRFNet
 from FCBFormer import FCBFormer
 from ESFPNet import ESFPNetStructure
-from SwinUNet import SwinUnet
 from SwinUperNet import SwinUperNet
 
 
@@ -24,11 +22,9 @@ class Model(nn.Module):
         super(Model, self).__init__()
 
         # Define Backbone architecture
-        if opt.backbone == 'ResNet-50-ImageNet':
+        if opt.backbone == 'ResNet-50':
             url = "https://download.pytorch.org/models/resnet50-11ad3fa6.pth"
             self.backbone = ResNet50(num_classes=opt.num_classes, channels=3, pretrained='ImageNet', url=url)
-        elif opt.backbone == 'ResNet-50-GastroNet':
-            self.backbone = ResNet50(num_classes=opt.num_classes, channels=3, pretrained='GastroNet', url='')
         elif opt.backbone == 'ResNet-101':
             url = "https://download.pytorch.org/models/resnet101-cd907fc2.pth"
             self.backbone = ResNet101(num_classes=opt.num_classes, channels=3, pretrained='ImageNet', url=url)
@@ -71,14 +67,10 @@ class Model(nn.Module):
             self.backbone = UNetPP(encoder_name='efficientnet-b6', url='', num_classes=opt.num_classes)
         elif opt.backbone == 'CaraNet':
             self.backbone = CaraNet(inference=inference, num_classes=opt.num_classes)
-        elif opt.backbone == 'GMSRFNet':
-            self.backbone = GMSRFNet()
         elif 'FCBFormer' in opt.backbone:
             self.backbone = FCBFormer(opt=opt)
         elif 'ESFPNet' in opt.backbone:
             self.backbone = ESFPNetStructure(opt=opt, inference=inference)
-        elif 'Swin' in opt.backbone and 'UNet' in opt.backbone:
-            self.backbone = SwinUnet(opt=opt)
         elif 'Swin' in opt.backbone and 'UperNet':
             self.backbone = SwinUperNet(opt=opt, inference=inference)
         else:

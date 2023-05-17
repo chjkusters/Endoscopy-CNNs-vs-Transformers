@@ -83,17 +83,17 @@ class ESFPNetStructure(nn.Module):
     def _init_weights(self):
 
         if 'B0' in self.bb:
-            pretrained_dict = torch.load(os.path.join(os.getcwd(), 'pretrained', 'mit_b0.pth'))
+            pretrained_dict = torch.load(os.path.join(os.getcwd(), '..', 'pretrained', 'mit_b0.pth'))
         if 'B1' in self.bb:
-            pretrained_dict = torch.load(os.path.join(os.getcwd(), 'pretrained', 'mit_b1.pth'))
+            pretrained_dict = torch.load(os.path.join(os.getcwd(), '..', 'pretrained', 'mit_b1.pth'))
         if 'B2' in self.bb:
-            pretrained_dict = torch.load(os.path.join(os.getcwd(), 'pretrained', 'mit_b2.pth'))
+            pretrained_dict = torch.load(os.path.join(os.getcwd(), '..', 'pretrained', 'mit_b2.pth'))
         if 'B3' in self.bb:
-            pretrained_dict = torch.load(os.path.join(os.getcwd(), 'pretrained', 'mit_b3.pth'))
+            pretrained_dict = torch.load(os.path.join(os.getcwd(), '..', 'pretrained', 'mit_b3.pth'))
         if 'B4' in self.bb:
-            pretrained_dict = torch.load(os.path.join(os.getcwd(), 'pretrained', 'mit_b4.pth'))
+            pretrained_dict = torch.load(os.path.join(os.getcwd(), '..', 'pretrained', 'mit_b4.pth'))
         if 'B5' in self.bb:
-            pretrained_dict = torch.load(os.path.join(os.getcwd(), 'pretrained', 'mit_b5.pth'))
+            pretrained_dict = torch.load(os.path.join(os.getcwd(), '..', 'pretrained', 'mit_b5.pth'))
 
         model_dict = self.MiT.state_dict()
         pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in model_dict}

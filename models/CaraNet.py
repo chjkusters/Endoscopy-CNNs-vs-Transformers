@@ -538,8 +538,7 @@ def res2net50_v1b(pretrained=False, **kwargs):
     """
     model = Res2Net(Bottle2neck, [3, 4, 6, 3], baseWidth=26, scale=4, **kwargs)
     if pretrained:
-        # pretrain_dict = model_zoo.load_url(model_urls['res2net50_v1b_26w_4s'])
-        pretrain_dict = torch.load(os.path.join(os.getcwd(), 'pretrained', 'res2net50_v1b_26w_4s-3cf99910.pth'))
+        pretrain_dict = torch.load(os.path.join(os.getcwd(), '..', 'pretrained', 'res2net50_v1b_26w_4s-3cf99910.pth'))
         pretrain_dict_keys = list(pretrain_dict.keys())
         for key in pretrain_dict_keys:
             if 'fc' in key:
@@ -555,8 +554,7 @@ def res2net101_v1b(pretrained=False, **kwargs):
     """
     model = Res2Net(Bottle2neck, [3, 4, 23, 3], baseWidth=26, scale=4, **kwargs)
     if pretrained:
-        # pretrain_dict = model_zoo.load_url(model_urls['res2net101_v1b_26w_4s'])
-        pretrain_dict = torch.load(os.path.join(os.getcwd(), 'pretrained', 'res2net101_v1b_26w_4s-0812c246.pth'))
+        pretrain_dict = torch.load(os.path.join(os.getcwd(), '..', 'pretrained', 'res2net101_v1b_26w_4s-0812c246.pth'))
         pretrain_dict_keys = list(pretrain_dict.keys())
         for key in pretrain_dict_keys:
             if 'fc' in key:
@@ -574,7 +572,6 @@ def res2net50_v1b_26w_4s(pretrained=False, **kwargs):
     if pretrained:
         model_state = torch.load('D:/HarDNet-MSEG-master/res2net50_v1b_26w_4s-3cf99910.pth')
         model.load_state_dict(model_state, strict=False)
-        # lib.load_state_dict(model_zoo.load_url(model_urls['res2net50_v1b_26w_4s']))
     return model
 
 
@@ -585,8 +582,7 @@ def res2net101_v1b_26w_4s(pretrained=False, num_classes=1, **kwargs):
     """
     model = Res2Net(Bottle2neck, [3, 4, 23, 3], baseWidth=26, scale=4, num_classes=num_classes, **kwargs)
     if pretrained:
-        # pretrain_dict = model_zoo.load_url(model_urls['res2net101_v1b_26w_4s'])
-        pretrain_dict = torch.load(os.path.join(os.getcwd(), 'pretrained', 'res2net101_v1b_26w_4s-0812c246.pth'))
+        pretrain_dict = torch.load(os.path.join(os.getcwd(), '..', 'pretrained', 'res2net101_v1b_26w_4s-0812c246.pth'))
         pretrain_dict_keys = list(pretrain_dict.keys())
         for key in pretrain_dict_keys:
             if 'fc' in key:
