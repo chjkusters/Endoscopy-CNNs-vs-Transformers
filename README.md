@@ -42,4 +42,5 @@ The ImageNet pretrained weights are downloaded from the following links, and put
 - SwinV2: https://github.com/microsoft/Swin-Transformer
 
 ## Citation
-Please use the following citation
+If you think this helps, please use the following citation:
+
