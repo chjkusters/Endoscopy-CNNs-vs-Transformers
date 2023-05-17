@@ -36,6 +36,9 @@ The folder structure of this repository is as follows:
 └── README.md
 ```
 
+## Environment
+The conda environment with the dependencies for this project are specified in "conda.yaml".
+
 ## Pretrained models
 The ImageNet pretrained weights are downloaded from the following links, and put under the "pretrained" folder: 
 - CaraNet (Res2Net): https://github.com/Res2Net/Res2Net-PretrainedModels
@@ -49,8 +52,22 @@ If you think this helps, please use the following citation:
 ```bash
 @inproceedings{KustersConference,
 title = {{CNNs vs. Transformers: Performance and Robustness in Endoscopic Image Analysis}},
-author = {Kusters, Carolus H.J. and Boers, Tim G.W. and Jaspers, Tim J.M. and Jong, Martijn R. and Jukema, Jelmer B. and de Groof, Albert J and Bergman, Jacques J and de With, Peter H.N. and van der Sommen, Fons},
+author = {Kusters, Carolus H.J. and Boers, Tim G.W. and Jaspers, Tim J.M. and Jong, Martijn R. and Jukema, Jelmer B. and de Groof, Albert J and Bergman, Jacques J and van der Sommen, Fons and de With, Peter H.N.},
 booktitle = {Submission under review},
 year = {2023}
+}
+
+@article{KustersJournal,
+title = {Will Transformers transform endoscopic AI? A comparative analysis between CNNs and Transformers, in terms of performance, robustness and generalization},
+journal = {Submission Under Review},
+volume = {},
+pages = {},
+year = {2023},
+issn = {},
+doi = {},
+url = {},
+author = {Kusters, Carolus H.J. and Boers, Tim G.W. and Jaspers, Tim J.M. and Jong, Martijn R. and Jukema, Jelmer B. and de Groof, Albert J and Bergman, Jacques J and van der Sommen, Fons and de With, Peter H.N.},
+keywords = {Endoscopic Image Analysis, Convolutional Neural Networks, Transformers, Robustness, Generalization},
+abstract = {}
 }
 ```
