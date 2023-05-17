@@ -46,3 +46,11 @@ The ImageNet pretrained weights are downloaded from the following links, and put
 ## Citation
 If you think this helps, please use the following citation:
 
+```bash
+@inproceedings{KustersConference,
+title = {{CNNs vs. Transformers: Performance and Robustness in Endoscopic Image Analysis}},
+author = {Kusters, Carolus H.J. and Boers, Tim G.W. and Jaspers, Tim J.M. and Jong, Martijn R. and Jukema, Jelmer B. and de Groof, Albert J and Bergman, Jacques J and de With, Peter H.N. and van der Sommen, Fons},
+booktitle = {Submission under review},
+year = {2023}
+}
+```
