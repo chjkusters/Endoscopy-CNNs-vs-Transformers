@@ -47,7 +47,7 @@ The ImageNet pretrained weights are downloaded from the following links, and put
 - SwinV2: https://github.com/microsoft/Swin-Transformer
 
 ## Model Comparison
-
+![alt text](https://github.com/chjkusters/Endoscopy-CNNs-vs-Transformers/main/images/Models.PNG?raw=true)
 
 ## Results
 
