@@ -47,9 +47,8 @@ The ImageNet pretrained weights are downloaded from the following links, and put
 - SwinV2: https://github.com/microsoft/Swin-Transformer
 
 ## Model Comparison
+The study aims to comprehensively evaluate and compare the peak performance, generalization, robustness and complexity of several CNNs and Transformers for gastrointestinal endoscopic image analysis. The following models are involved in the comparison.
 ![My Image](images/Models.PNG)
-
-## Results
 
 ## Citation
 If you think this helps, please use the following citation:
