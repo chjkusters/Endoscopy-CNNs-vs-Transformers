@@ -37,7 +37,7 @@ The folder structure of this repository is as follows:
 ```
 
 ## Environment
-The conda environment with the dependencies for this project are specified in "conda.yaml".
+The conda environment with the software dependencies for this project are specified in "conda.yaml".
 
 ## Pretrained models
 The ImageNet pretrained weights are downloaded from the following links, and put under the "pretrained" folder: 
