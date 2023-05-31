@@ -51,8 +51,9 @@ The study aims to comprehensively evaluate and compare the peak performance, gen
 ![My Image](images/Models.PNG)
 
 ## Citation
-If you think this helps, please use the following citation:
+Citations will be added upon acceptance of respective papers.
 
+<!--- If you think this helps, please use the following citation:
 ```bash
 @inproceedings{KustersConference,
 title = {{CNNs vs. Transformers: Performance and Robustness in Endoscopic Image Analysis}},
@@ -74,4 +75,4 @@ author = {Kusters, Carolus H.J. and Boers, Tim G.W. and Jaspers, Tim J.M. and Jo
 keywords = {Endoscopic Image Analysis, Convolutional Neural Networks, Transformers, Robustness, Generalization},
 abstract = {}
 }
-```
+```--->
