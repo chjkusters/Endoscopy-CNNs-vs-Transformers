@@ -51,7 +51,7 @@ The study aims to comprehensively evaluate and compare the peak performance, gen
 ![My Image](images/Models.PNG)
 
 ## Citation
-Citations will be added upon acceptance of respective papers.
+Citations will be added upon eventual acceptance of respective papers.
 
 <!--- If you think this helps, please use the following citation:
 ```bash
