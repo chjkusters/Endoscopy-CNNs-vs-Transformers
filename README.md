@@ -1,7 +1,7 @@
 # CNNs vs. Transformers: Performance, Robustness and Generalization in Gastrointestinal Endoscopic Image Analysis
  
  This repository contains the codebases for the following publication(s):
- - Carolus H.J. Kusters *et al.* - CNNs vs. Transformers: Performance and Robustness in Endoscopic Image Analysis <br />  *Second Workshop on Applications of Medical AI (AMAI) - Satellite event MICCAI 2023*
+ - Carolus H.J. Kusters *et al.* - CNNs vs. Transformers: Performance and Robustness in Endoscopic Image Analysis <br />  *Second Workshop on Applications of Medical AI (AMAI) - Satellite Event MICCAI 2023*
  - Carolus H.J. Kusters *et al.* - Will Transformers transform endoscopic AI? A comparative analysis between CNNs and Transformers, in terms of performance, robustness and generalization <br /> *Submission under Review*
 
 ## Folder Structure
