@@ -52,7 +52,7 @@ The study aims to comprehensively evaluate and compare the peak performance, gen
 
 ## Citation
 
-If you think this helps, please use the following citation:
+If you think this helps, please use the following citation for the conference paper:
 ```bash
 @InProceedings{10.1007/978-3-031-47076-9_3,
 author="Kusters, Carolus H. J.
