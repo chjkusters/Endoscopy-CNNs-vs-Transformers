@@ -1,8 +1,28 @@
-# CNNs vs. Transformers: Performance, Robustness and Generalization in Gastrointestinal Endoscopic Image Analysis
+<div align="center">
+<h3>CNNs vs. Transformers: Performance and Robustness in Endoscopic Image Analysis</h3>
+
+[Carolus H.J. Kusters](https://github.com/chjkusters)<sup>1 :email:</sup>, Tim G.W. Boers<sup>1</sup>, Tim J.M. Jaspers<sup>1</sup>, Jelmer B. Jukema<sup>2</sup>, Martijn R. Jong<sup>2</sup>, Kiki N. Fockens<sup>2</sup>, Albert J. de Groof<sup>2</sup>, Jacques J. Bergman<sup>2</sup>, Fons van der Sommen<sup>1</sup>, Peter H.N. de With<sup>1</sup>
  
- This repository contains the codebases for the following publication(s):
- - Carolus H.J. Kusters *et al.* - CNNs vs. Transformers: Performance and Robustness in Endoscopic Image Analysis <br />  *Second Workshop on Applications of Medical AI (AMAI) - Satellite Event MICCAI 2023*
- - Carolus H.J. Kusters *et al.* - Will Transformers transform endoscopic AI? A comparative analysis between CNNs and Transformers, in terms of performance, robustness and generalization <br /> *Submission under Review*
+<sup>1</sup>  Department of Electrical Engineering, Video Coding & Architectures, Eindhoven University of Technology <br /> <sup>2</sup>  Department of Gastroenterology and Hepatology, Amsterdam University Medical Centers, University of Amsterdam
+
+(<sup>:email:</sup>) corresponding author
+
+*Second Workshop on Applications of Medical AI &#40;AMAI&#41; - Satellite Event MICCAI 2023* <br /> ([Proceeding](https://link.springer.com/chapter/10.1007/978-3-031-47076-9_3))
+
+
+
+<h3>Will Transformers transform endoscopic AI? A comparative analysis between CNNs and Transformers, in terms of performance, robustness and generalization</h3>
+
+[Carolus H.J. Kusters](https://github.com/chjkusters)<sup>1 :email:</sup>, Tim J.M. Jaspers<sup>1</sup>, Tim G.W. Boers<sup>1</sup>, Jelmer B. Jukema<sup>2</sup>, Martijn R. Jong<sup>2</sup>, Kiki N. Fockens<sup>2</sup>, Albert J. de Groof<sup>2</sup>, Jacques J. Bergman<sup>2</sup>, Fons van der Sommen<sup>1</sup>, Peter H.N. de With<sup>1</sup>
+ 
+<sup>1</sup>  Department of Electrical Engineering, Video Coding & Architectures, Eindhoven University of Technology <br /> <sup>2</sup>  Department of Gastroenterology and Hepatology, Amsterdam University Medical Centers, University of Amsterdam
+
+(<sup>:email:</sup>) corresponding author
+
+*Submission under Review*
+
+</div>
+
 
 ## Folder Structure
 The folder structure of this repository is as follows:
