@@ -424,7 +424,6 @@ if __name__ == '__main__':
     DEFINE_SET = 'Val'
 
     """SPECIFY PATH FOR SAVING"""
-    SAVE_DIR = 'D:/Python Scripts - Open Research/WLE-Transformers-PL/experiments'
     SAVE_DIR = os.path.join(os.getcwd(), 'experiments')
 
     """SPECIFY PATH FOR CACHE"""
