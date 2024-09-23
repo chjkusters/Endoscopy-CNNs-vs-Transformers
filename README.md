@@ -20,7 +20,7 @@
 
 (<sup>:email:</sup>) corresponding author
 
-*Medical Image Analysis - Volume 99, January 2025*
+*Medical Image Analysis - Volume 99, January 2025* <br /> ([Article](https://doi.org/10.1016/j.media.2024.103348))
 
 </div>
 
