@@ -20,7 +20,7 @@
 
 (<sup>:email:</sup>) corresponding author
 
-*Submission under Review*
+*Medical Image Analysis - Volume 99, January 2025*
 
 </div>
 
@@ -107,4 +107,21 @@ This robustness against challenging video-related conditions and equipment varia
 The code is made publicly available at: https://github.com/BONS-AI-VCA-AMC/Endoscopy-CNNs-vs-Transformers.",
 isbn="978-3-031-47076-9"
 }
-```--->
+```
+and the following citation for the journal paper:
+```bash
+@article{KUSTERS2025103348,
+title = {Will Transformers change gastrointestinal endoscopic image analysis? A comparative analysis between CNNs and Transformers, in terms of performance, robustness and generalization},
+journal = {Medical Image Analysis},
+volume = {99},
+pages = {103348},
+year = {2025},
+issn = {1361-8415},
+doi = {https://doi.org/10.1016/j.media.2024.103348},
+url = {https://www.sciencedirect.com/science/article/pii/S1361841524002731},
+author = {Carolus H.J. Kusters and Tim J.M. Jaspers and Tim G.W. Boers and Martijn R. Jong and Jelmer B. Jukema and Kiki N. Fockens and Albert J. {de Groof} and Jacques J. Bergman and Fons {van der Sommen} and Peter H.N. {De With}},
+keywords = {Endoscopic image analysis, Convolutional neural networks, Transformers, Robustness, Generalization},
+abstract = {Gastrointestinal endoscopic image analysis presents significant challenges, such as considerable variations in quality due to the challenging in-body imaging environment, the often-subtle nature of abnormalities with low interobserver agreement, and the need for real-time processing. These challenges pose strong requirements on the performance, generalization, robustness and complexity of deep learning-based techniques in such safety–critical applications. While Convolutional Neural Networks (CNNs) have been the go-to architecture for endoscopic image analysis, recent successes of the Transformer architecture in computer vision raise the possibility to update this conclusion. To this end, we evaluate and compare clinically relevant performance, generalization and robustness of state-of-the-art CNNs and Transformers for neoplasia detection in Barrett’s esophagus. We have trained and validated several top-performing CNNs and Transformers on a total of 10,208 images (2,079 patients), and tested on a total of 7,118 images (998 patients) across multiple test sets, including a high-quality test set, two internal and two external generalization test sets, and a robustness test set. Furthermore, to expand the scope of the study, we have conducted the performance and robustness comparisons for colonic polyp segmentation (Kvasir-SEG) and angiodysplasia detection (Giana). The results obtained for featured models across a wide range of training set sizes demonstrate that Transformers achieve comparable performance as CNNs on various applications, show comparable or slightly improved generalization capabilities and offer equally strong resilience and robustness against common image corruptions and perturbations. These findings confirm the viability of the Transformer architecture, particularly suited to the dynamic nature of endoscopic video analysis, characterized by fluctuating image quality, appearance and equipment configurations in transition from hospital to hospital. The code is made publicly available at: https://github.com/BONS-AI-VCA-AMC/Endoscopy-CNNs-vs-Transformers.}
+}
+```
+
